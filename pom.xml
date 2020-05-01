@@ -22,8 +22,8 @@
     </build>
 
     <scm>
-        <connection>scm:git:git@github.com:i386/squarespace-java-api.git</connection>
-        <developerConnection>scm:git:git@github.com:i386/squarespace-java-api.git</developerConnection>
+        <connection>scm:git:git@github.com:i386/shipstation-java-api.git</connection>
+        <developerConnection>scm:git:git@github.com:i386/shipstation-java-api.git</developerConnection>
         <tag>master</tag>
     </scm>
 
@@ -37,11 +37,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.14</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -65,7 +60,7 @@
         <repository>
             <id>bintray-i386-maven</id>
             <name>i386-maven</name>
-            <url>https://api.bintray.com/maven/i386/maven/squarespace-java-api/;publish=1</url>
+            <url>https://api.bintray.com/maven/i386/maven/shipstation-java-api/;publish=1</url>
         </repository>
     </distributionManagement>
 </project>
