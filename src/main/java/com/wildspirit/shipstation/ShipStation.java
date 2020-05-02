@@ -33,14 +33,14 @@ public class ShipStation extends AbstractApi {
     }
 
     private static ObjectMapper createMapper() {
-        SimpleModule module = new SimpleModule();
-        module.setDeserializerModifier(new BeanDeserializerModifier() {
+        SimpleModule lowerCaseEnums = new SimpleModule();
+        lowerCaseEnums.setDeserializerModifier(new BeanDeserializerModifier() {
             @Override
             public JsonDeserializer<Enum> modifyEnumDeserializer(DeserializationConfig config,
                                                                  final JavaType type,
                                                                  BeanDescription beanDesc,
                                                                  final JsonDeserializer<?> deserializer) {
-                return new JsonDeserializer<Enum>() {
+                return new JsonDeserializer<>() {
                     @Override
                     public Enum deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
                         Class<? extends Enum> rawClass = (Class<Enum<?>>) type.getRawClass();
@@ -50,7 +50,7 @@ public class ShipStation extends AbstractApi {
             }
         });
         return new ObjectMapper()
-                .registerModule(module)
+                .registerModule(lowerCaseEnums)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 }
