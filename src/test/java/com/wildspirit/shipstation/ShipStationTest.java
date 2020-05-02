@@ -8,7 +8,11 @@ public class ShipStationTest {
     public void testShipStation() throws Exception {
         ShipStation ss = new ShipStation(fromEnvironment("SHIPSTATION_KEY"), fromEnvironment("SHIPSTATION_SECRET"));
         ss.orders().all(new GetOrdersRequest.Builder().build())
-                .forEach(order -> System.out.println(order.shipTo.name));
+                .forEach(order -> {
+                    System.out.print(order.shipTo.name);
+                    System.out.print(' ');
+                    System.out.println(order.orderId);
+                });
     }
 
     public static String fromEnvironment(String envName) {
