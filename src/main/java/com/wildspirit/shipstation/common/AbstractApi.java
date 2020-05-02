@@ -9,6 +9,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 public abstract class AbstractApi {
@@ -33,12 +34,18 @@ public abstract class AbstractApi {
         try (Response response = http.newCall(request).execute()) {
 
             switch (response.code()) {
-                case 403:
-                    throw new ShipStationException("Forbidden");
                 case 200:
                     return mapper.readValue(response.body().bytes(), responseClazz);
                 default:
-                    throw new ShipStationException("Code " + response.code());
+                    String message;
+                    try {
+                        String errorBody = response.body().string();
+                        Error error = mapper.readValue(errorBody, Error.class);
+                        message = error.message;
+                    } catch (Throwable e) {
+                        message = response.message();
+                    }
+                    throw new ShipStationException(message, response.code());
             }
         } catch (IOException e) {
             throw new ShipStationException("Could not map " + responseClazz.getName(), e);
@@ -68,9 +75,5 @@ public abstract class AbstractApi {
 
     protected UrlBuilder withEndpoint() {
         return UrlBuilder.fromString(ENDPOINT);
-    }
-
-    protected static String newIdempotencyKey() {
-        return RandomStringUtils.random(64, true, true);
     }
 }
