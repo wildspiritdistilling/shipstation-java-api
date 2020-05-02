@@ -17,12 +17,11 @@ public final class GetOrdersRequest {
     public final OrderStatus orderStatus;
     public final Date paymentDateStart;
     public final Date paymentDateEnd;
-    public final int storeId;
-    public final int sortBy;
+    public final Integer storeId;
+    public final Integer sortBy;
     public final SortDirection sortDir;
-    public final int pageSize;
 
-    public GetOrdersRequest(String customerName, String itemKeyword, Date createDateStart, Date createDateEnd, Date modifyDateStart, Date modifyDateEnd, Date orderDateStart, Date orderDateEnd, String orderNumber, OrderStatus orderStatus, Date paymentDateStart, Date paymentDateEnd, int storeId, int sortBy, SortDirection sortDir, int pageSize) {
+    public GetOrdersRequest(String customerName, String itemKeyword, Date createDateStart, Date createDateEnd, Date modifyDateStart, Date modifyDateEnd, Date orderDateStart, Date orderDateEnd, String orderNumber, OrderStatus orderStatus, Date paymentDateStart, Date paymentDateEnd, Integer storeId, Integer sortBy, SortDirection sortDir) {
         this.customerName = customerName;
         this.itemKeyword = itemKeyword;
         this.createDateStart = createDateStart;
@@ -38,7 +37,6 @@ public final class GetOrdersRequest {
         this.storeId = storeId;
         this.sortBy = sortBy;
         this.sortDir = sortDir;
-        this.pageSize = pageSize;
     }
 
 
@@ -141,7 +139,7 @@ public final class GetOrdersRequest {
         }
 
         public GetOrdersRequest build() {
-            return new GetOrdersRequest(customerName, itemKeyword, createDateStart, createDateEnd, modifyDateStart, modifyDateEnd, orderDateStart, orderDateEnd, orderNumber, orderStatus, paymentDateStart, paymentDateEnd, storeId, sortBy, sortDir, pageSize);
+            return new GetOrdersRequest(customerName, itemKeyword, createDateStart, createDateEnd, modifyDateStart, modifyDateEnd, orderDateStart, orderDateEnd, orderNumber, orderStatus, paymentDateStart, paymentDateEnd, storeId, sortBy, sortDir);
         }
     }
 }
